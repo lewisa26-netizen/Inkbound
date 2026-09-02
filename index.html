@@ -23,7 +23,7 @@
     --sage: #5c7a5e;
     --danger: #a83232;
   }
- 
+
   *{ box-sizing: border-box; }
   html,body{ height:100%; }
   body{
@@ -48,9 +48,9 @@
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   }
- 
+
   #app{ width:100%; max-width: 720px; }
- 
+
   /* ---------- header ---------- */
   header.masthead{
     display:flex;
@@ -77,7 +77,7 @@
     margin: 0 0 28px;
     font-size: 1.05rem;
   }
- 
+
   /* ---------- stat bar ---------- */
   .statbar{
     display:flex;
@@ -117,7 +117,7 @@
   }
   .chip.empty{ opacity:0.5; font-style:italic; }
   .entry-count{ margin-left:auto; color: var(--brass); }
- 
+
   /* ---------- ledger card ---------- */
   .ledger-stack{ position:relative; }
   .ledger-stack::before{
@@ -146,13 +146,13 @@
   @media (max-width: 560px){
     .ledger{ padding: 24px 20px 22px; }
   }
- 
+
   .entry-enter{ animation: fade-up 450ms ease-out; }
   @keyframes fade-up{
     from{ opacity:0; transform: translateY(6px); }
     to{ opacity:1; transform: translateY(0); }
   }
- 
+
   .narrative{
     font-family:'Cormorant Garamond', serif;
     font-size: 1.28rem;
@@ -169,13 +169,13 @@
     color: var(--wax);
     font-weight:600;
   }
- 
+
   .fold{
     border:none;
     border-top: 1px dashed var(--parchment-shadow);
     margin: 24px 0 20px;
   }
- 
+
   .choices{
     display:flex;
     flex-wrap:wrap;
@@ -201,7 +201,7 @@
     outline: none;
   }
   .choice-btn:active{ transform: translateY(1px); }
- 
+
   .custom-row{
     margin-top: 18px;
     display:flex;
@@ -235,7 +235,7 @@
     flex-shrink:0;
   }
   .icon-btn:hover, .icon-btn:focus-visible{ border-color: var(--wax); color: var(--wax); outline:none; }
- 
+
   .abandon-link{
     display:block;
     text-align:center;
@@ -248,7 +248,7 @@
     cursor:pointer;
     font-family:'Courier Prime', monospace;
   }
- 
+
   /* ---------- setup screen ---------- */
   .field{ margin-bottom: 22px; }
   .field label{
@@ -279,7 +279,7 @@
     line-height: 1.4;
   }
   .field-note a{ color: var(--wax); }
- 
+
   .archetypes{
     display:grid;
     grid-template-columns: 1fr 1fr;
@@ -287,7 +287,7 @@
     margin-bottom: 26px;
   }
   @media (max-width: 480px){ .archetypes{ grid-template-columns: 1fr; } }
- 
+
   .archetype-card{
     text-align:left;
     background: rgba(0,0,0,0.03);
@@ -314,7 +314,7 @@
     margin: 0 0 4px;
   }
   .archetype-card .a-desc{ font-size: 0.76rem; color: var(--ink-soft); line-height:1.4; }
- 
+
   .begin-row{ display:flex; flex-direction:column; align-items:center; gap:10px; margin-top: 8px; }
   .seal-btn{
     width: 96px; height: 96px;
@@ -333,7 +333,7 @@
   .seal-btn:disabled{ opacity: 0.4; cursor:not-allowed; }
   .seal-btn:not(:disabled):active{ transform: scale(0.93); }
   .setup-hint{ font-size:0.72rem; color: var(--ink-soft); min-height: 1em; }
- 
+
   /* ---------- loading / error ---------- */
   .loading-row{
     display:flex; align-items:center; gap:10px;
@@ -355,7 +355,7 @@
     0%, 80%, 100%{ opacity:0.25; transform: scale(0.8); }
     40%{ opacity:1; transform: scale(1); }
   }
- 
+
   .error-box{
     text-align:center;
     color: var(--danger);
@@ -376,7 +376,7 @@
     border-radius: 2px;
     cursor:pointer;
   }
- 
+
   /* ---------- end screen ---------- */
   .fate-badge{
     display:inline-block;
@@ -404,12 +404,12 @@
 </head>
 <body>
 <div id="app"></div>
- 
+
 <script>
 (function(){
- 
+
   /* ---------------- content data ---------------- */
- 
+
   const ICONS = {
     compass: '<svg viewBox="0 0 64 64" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="32" cy="32" r="25"/><path d="M32 10 L36 30 L32 33 L28 30 Z" fill="currentColor" stroke="none"/><path d="M32 54 L28 34 L32 31 L36 34 Z" fill="currentColor" stroke="none" opacity="0.45"/><line x1="32" y1="15" x2="32" y2="21"/><line x1="32" y1="43" x2="32" y2="49"/><line x1="15" y1="32" x2="21" y2="32"/><line x1="43" y1="32" x2="49" y2="32"/></svg>',
     flame: '<svg viewBox="0 0 16 20" width="13" height="16" fill="currentColor"><path d="M8 0 C8 5 3 6 3 11 a5 5 0 0 0 10 0 C13 6 8 5 8 0 Z"/></svg>',
@@ -419,16 +419,16 @@
     blade: '<svg viewBox="0 0 28 28" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="8" y1="21" x2="17" y2="11"/><line x1="17" y1="11" x2="14" y2="8"/><line x1="19" y1="13" x2="22" y2="10"/><line x1="6" y1="23" x2="8" y2="21"/><line x1="10" y1="6" x2="13" y2="9"/><line x1="15" y1="4" x2="18" y2="7"/></svg>',
     flask: '<svg viewBox="0 0 28 28" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4 h6 M12 4 v7 l-6 11 a2 2 0 0 0 2 3 h12 a2 2 0 0 0 2 -3 l-6 -11 v-7"/><line x1="8.5" y1="18" x2="19.5" y2="18"/></svg>'
   };
- 
+
   const ARCHETYPES = [
     { id:'cartographer', name:'The Cartographer', article:'a', desc:"Draws maps of places that shouldn't exist yet.", icon: ICONS.map },
     { id:'smuggler', name:'The Smuggler', article:'a', desc:'Owes the wrong people a debt paid in secrets.', icon: ICONS.coin },
     { id:'knight', name:'The Exiled Knight', article:'an', desc:'Cast out from an order sworn to protect a lie.', icon: ICONS.blade },
     { id:'alchemist', name:'The Alchemist', article:'an', desc:'Chases a formula that vanished with its inventor.', icon: ICONS.flask }
   ];
- 
+
   const SYSTEM_PROMPT = `You are the narrator for INKBOUND, a literary text-adventure told as journal entries. Voice: vivid, sensory, second person ("You..."), evocative but concise. Tone: adventurous and atmospheric, occasionally perilous, suitable for a general audience (no graphic violence or gore, no sexual content). Plain prose only — never use markdown formatting (no asterisks, no headers, no numbered lists) inside narrative or choice text.
- 
+
 You will be given the character's identity, current vitality (0-100), satchel contents, a running story summary, and the player's latest action. Continue the tale:
 - Narrative: exactly 2-3 short paragraphs (140-220 words total) describing what happens as a result of the player's action, with meaningful consequences, discoveries, obstacles, or characters.
 - Then invent exactly 3 distinct, specific, action-oriented choices for what the player could do next (each under 12 words, no numbering, no leading dash).
@@ -437,16 +437,16 @@ You will be given the character's identity, current vitality (0-100), satchel co
 - summary: one past-tense sentence capturing this turn, for the running record.
 - gameOver: true only when the tale reaches a satisfying dramatic conclusion (victory, defeat, or bittersweet ending) — typically after 8 to 14 entries, never on the first few turns unless vitality hits 0.
 - epilogue: when gameOver is true, 2-3 closing sentences; otherwise null.
- 
+
 Respond with ONLY minified JSON, no markdown code fences, no commentary, in exactly this shape:
 {"narrative":"...","choices":["...","...","..."],"vitalityChange":0,"itemsGained":[],"itemsLost":[],"summary":"...","gameOver":false,"gameOverReason":null,"epilogue":null}`;
- 
+
   /* ---------------- state ---------------- */
- 
+
   const state = {
     screen: 'setup',
     apiKey: '',
-    model: 'llama-3.3-70b-versatile',
+    model: 'openai/gpt-oss-120b',
     name: '',
     archetype: null,
     customSeed: '',
@@ -463,34 +463,34 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
     fate: null,
     firstLoad: true
   };
- 
+
   function esc(str){
     const d = document.createElement('div');
     d.textContent = str == null ? '' : String(str);
     return d.innerHTML;
   }
- 
+
   /* ---------------- API ---------------- */
- 
+
   function buildOpeningPrompt(){
     const seed = state.customSeed.trim();
     return `Character: ${state.name}, ${state.archetype.article} ${state.archetype.name} — ${state.archetype.desc} Vitality: 100/100. Satchel: empty. This is the opening entry of the tale.${seed ? ' The chronicler wishes their tale to involve: ' + seed + '.' : ''} Player's action: "BEGIN THE TALE — set the opening scene and hook."`;
   }
- 
+
   function buildTurnPrompt(actionText){
     const satchelStr = state.satchel.length ? state.satchel.join(', ') : 'empty';
     const storySoFar = state.summaries.join(' ');
     return `Character: ${state.name}, ${state.archetype.article} ${state.archetype.name}. Vitality: ${state.vitality}/100. Satchel: ${satchelStr}. Entry number: ${state.turn}. Story so far: ${storySoFar} Player's action: "${actionText}".`;
   }
- 
+
   async function callDM(actionText){
     state.loading = true;
     state.error = null;
     state.lastAction = actionText;
     render();
- 
+
     const userMsg = state.turn === 0 ? buildOpeningPrompt() : buildTurnPrompt(actionText);
- 
+
     try{
       const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
@@ -499,7 +499,7 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
           'Authorization': 'Bearer ' + state.apiKey.trim()
         },
         body: JSON.stringify({
-          model: state.model.trim() || 'llama-3.3-70b-versatile',
+          model: state.model.trim() || 'openai/gpt-oss-120b',
           max_tokens: 1000,
           response_format: { type: 'json_object' },
           messages: [
@@ -532,7 +532,7 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
       render();
     }
   }
- 
+
   function applyTurn(parsed){
     const narrative = typeof parsed.narrative === 'string' ? parsed.narrative : '';
     const choices = Array.isArray(parsed.choices) ? parsed.choices.filter(c => typeof c === 'string' && c.trim()).slice(0,4) : [];
@@ -543,7 +543,7 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
     const gameOver = !!parsed.gameOver;
     const gameOverReason = typeof parsed.gameOverReason === 'string' ? parsed.gameOverReason : null;
     const epilogue = typeof parsed.epilogue === 'string' ? parsed.epilogue : '';
- 
+
     state.vitality = Math.max(0, Math.min(100, state.vitality + vitalityChange));
     itemsGained.forEach(i => { if(!state.satchel.includes(i)) state.satchel.push(i); });
     itemsLost.forEach(i => { state.satchel = state.satchel.filter(x => x !== i); });
@@ -554,7 +554,7 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
     state.loading = false;
     state.error = null;
     state.screen = 'story';
- 
+
     if(gameOver || state.vitality <= 0){
       state.screen = 'end';
       state.fate = state.vitality <= 0 ? 'death' : (gameOverReason || 'conclusion');
@@ -564,26 +564,26 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
     }
     render();
   }
- 
+
   /* ---------------- actions ---------------- */
- 
+
   function selectArchetype(id){
     state.archetype = ARCHETYPES.find(a => a.id === id) || null;
     render();
   }
- 
+
   function beginTale(){
     if(!state.name.trim() || !state.archetype || !state.apiKey.trim()) return;
     callDM(null);
   }
- 
+
   function chooseChoice(index){
     if(state.loading) return;
     const text = state.choices[index];
     if(!text) return;
     callDM(text);
   }
- 
+
   function submitCustom(){
     if(state.loading) return;
     const input = document.getElementById('custom-action-input');
@@ -593,11 +593,11 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
     input.value = '';
     callDM(val);
   }
- 
+
   function retry(){
     callDM(state.lastAction);
   }
- 
+
   function resetGame(){
     state.screen = 'setup';
     state.name = '';
@@ -616,13 +616,13 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
     state.fate = null;
     render();
   }
- 
+
   function abandonTale(){
     if(confirm('Abandon this tale and begin a new one?')) resetGame();
   }
- 
+
   /* ---------------- render ---------------- */
- 
+
   function render(){
     const app = document.getElementById('app');
     app.innerHTML =
@@ -632,14 +632,14 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
        renderStatBar() + renderEnd());
     attachHandlers();
   }
- 
+
   function renderHeader(){
     return `
       <header class="masthead">${ICONS.compass}<h1>INKBOUND</h1></header>
       <p class="tagline">a journal of the road not yet taken</p>
     `;
   }
- 
+
   function renderStatBar(){
     const satchelHtml = state.satchel.length
       ? state.satchel.map(i => `<span class="chip">${esc(i)}</span>`).join('')
@@ -656,7 +656,7 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
       </div>
     `;
   }
- 
+
   function renderSetup(){
     const archetypeCards = ARCHETYPES.map(a => `
       <button type="button" class="archetype-card ${state.archetype && state.archetype.id === a.id ? 'selected' : ''}" data-action="select-archetype" data-id="${a.id}">
@@ -667,9 +667,9 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
         </span>
       </button>
     `).join('');
- 
+
     const canBegin = state.name.trim() && state.archetype && state.apiKey.trim() && !state.loading;
- 
+
     return `
       <div class="ledger-stack">
         <div class="ledger">
@@ -680,7 +680,7 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
           </div>
           <div class="field">
             <label for="model-input">Groq model</label>
-            <input type="text" id="model-input" maxlength="60" placeholder="llama-3.3-70b-versatile" value="${esc(state.model)}" />
+            <input type="text" id="model-input" maxlength="60" placeholder="openai/gpt-oss-120b" value="${esc(state.model)}" />
           </div>
           <div class="field">
             <label for="name-input">Your name, for the record</label>
@@ -704,13 +704,13 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
       </div>
     `;
   }
- 
+
   function renderStory(){
     const paragraphs = state.narrative.split(/\n+/).filter(p => p.trim()).map(p => `<p>${esc(p)}</p>`).join('');
     const choiceButtons = state.choices.map((c, i) =>
       `<button type="button" class="choice-btn" data-action="choose" data-index="${i}" ${state.loading ? 'disabled' : ''}>${esc(c)}</button>`
     ).join('');
- 
+
     return `
       <div class="ledger-stack">
         <div class="ledger">
@@ -729,7 +729,7 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
       </div>
     `;
   }
- 
+
   function renderEnd(){
     const fateLabel = state.fate === 'death' ? 'A Fallen Tale' : state.fate === 'victory' ? 'A Tale Well Told' : 'A Tale Concluded';
     return `
@@ -751,16 +751,16 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
       </div>
     `;
   }
- 
+
   function renderLoading(){
     return `<div class="loading-row"><span>The quill scratches on</span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>`;
   }
- 
+
   /* ---------------- event wiring ---------------- */
- 
+
   function attachHandlers(){
     const app = document.getElementById('app');
- 
+
     const apiKeyInput = document.getElementById('apikey-input');
     if(apiKeyInput){
       apiKeyInput.addEventListener('input', e => { state.apiKey = e.target.value; syncBeginState(); });
@@ -781,10 +781,10 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
     if(customInput){
       customInput.addEventListener('keydown', e => { if(e.key === 'Enter') submitCustom(); });
     }
- 
+
     app.addEventListener('click', onAppClick);
   }
- 
+
   // avoid stacking duplicate listeners across re-renders
   let clickBound = false;
   function onAppClick(e){
@@ -799,7 +799,7 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
     else if(action === 'reset') resetGame();
     else if(action === 'abandon') abandonTale();
   }
- 
+
   // lightweight re-render of just the begin button state without losing input focus
   function syncBeginState(){
     const btn = document.querySelector('.seal-btn[data-action="begin"]');
@@ -809,7 +809,7 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
     btn.disabled = !canBegin;
     if(hint) hint.textContent = canBegin ? '' : 'Add your Groq API key, name yourself, and choose your path';
   }
- 
+
   render();
 })();
 </script>
