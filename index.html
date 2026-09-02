@@ -502,6 +502,7 @@ Respond with ONLY minified JSON, no markdown code fences, no commentary, in exac
           model: state.model.trim() || 'openai/gpt-oss-120b',
           max_tokens: 1000,
           response_format: { type: 'json_object' },
+          reasoning_format: 'hidden',
           messages: [
             { role: 'system', content: SYSTEM_PROMPT },
             { role: 'user', content: userMsg }
